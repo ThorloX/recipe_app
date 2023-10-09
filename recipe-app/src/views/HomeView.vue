@@ -82,7 +82,7 @@ const addNewRecipe = () => {
           <div class="group">
             <label>Method</label>
             <div class="Method" v-for="i in newRecipe.methodRows" :key="i">
-              <textarea v-model="newRecipe.methodRows[i - 1]"></textarea>
+              <textarea v-model="newRecipe.method[i - 1]"></textarea>
             </div>
             <button type="button" @click="addNewStep">Add a step</button>
           </div>
