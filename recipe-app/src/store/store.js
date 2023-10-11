@@ -56,10 +56,10 @@ export const useStore = defineStore('recipe', {
       return state.recipes.find((recipe) => recipe.slug === slug);
     },
   },
-  actions: {
-    ADD_RECIPE(state, recipe) {
-      state.recipes.push(recipe);
-
-    },
-  },
+  // mutations: {
+  //   addRecipe: (state) => (newRecipe) => {
+  //     state.recipes.push(newRecipe);
+  //     console.log('areyouevenhere?', newRecipe)
+  //   },
+  // },
 });

@@ -9,7 +9,8 @@ const newRecipe = ref({
   ingredients: [],
   method: [],
   ingredientsRows: 1,
-  methodRows: 1
+  methodRows: 1,
+  slug: ''
 })
 
 const popupOpen = ref(false);
@@ -26,16 +27,27 @@ const addNewStep = () => {
 }
 
 const addNewRecipe = () => {
-  newRecipe.value.slug = newRecipe.value.title.toLowerCase().replace(/\s/g, '-')
+  try {
+    newRecipe.value.slug = newRecipe.value.title.toLowerCase().replace(/\s/g, '-')
 
-  if (newRecipe.value.slug == '') {
-    alert('Please enter a title');
-    return;
+    if (newRecipe.value.slug == '') {
+      alert('Please enter a title');
+      return;
+    }
+    store.$state.recipes.push(newRecipe.value);
+    togglePopup()
+    newRecipe.value = {
+      title: '',
+      description: '',
+      ingredients: [],
+      method: [],
+      ingredientsRows: 1,
+      methodRows: 1,
+      slug: ''
+    }
+  } catch (error) {
+    console.log(error);
   }
-  store.ADD_RECIPE( {...newRecipe.value})
-
-  togglePopup()
-
 }
 
 
@@ -87,7 +99,7 @@ const addNewRecipe = () => {
             <button type="button" @click="addNewStep">Add a step</button>
           </div>
 
-          <button type="submit" >Add Recipe</button>
+          <button type="submit">Add Recipe</button>
           <button type="button" @click="togglePopup">Close</button>
 
         </form>
