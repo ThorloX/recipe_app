@@ -37,7 +37,7 @@ const recipe = computed(() => {
   return store.$state.recipes.find((recipe) => recipe.slug === routeParams.slug);
 });
 
-function cleanText(text) {
+const cleanText = (text) => {
   return text.replace(/\n/g, '<br />');
 }
 </script>
